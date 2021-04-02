@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background-color: #f1c40f;
+  font-family: "Ubuntu", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 400px;
+  height: 400px;
+  text-align: center;
+}
+
+.container h1 {
+  color: #fff;
+}
+
+.not-found-message {
+  font-size: 20px;
+  color: #fff;
+  margin-top: 2rem;
+  display: none;
+}
+
+.address-form {
+  margin-top: 2rem;
+}
+
+.address-form label {
+  font-size: 17px;
+  color: #fff;
+  padding: 8px 0;
+  display: block;
+  text-align: left;
+}
+
+.address-form .cep-input {
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  border-radius: 5px;
+  border: 0;
+}
+
+.address-form .cep-info {
+  width: 416px;
+  height: 160px;
+  border-radius: 5px;
+  margin-top: 1rem;
+  border: 0;
+}
+
+.btn-copy {
+  width: 416px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: 0;
+  background: #3498db;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.btn-copy:hover {
+  cursor: pointer;
+  transform: translateY(5px);
+}
