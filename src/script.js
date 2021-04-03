@@ -1,9 +1,14 @@
-const $cepInput = document.getElementById("cep-input");
-const $cepInfo = document.getElementById("cep-info");
-const $btnCopy = document.getElementById("btn-copy");
-const $addressForm = document.getElementById("address-form");
-const $addressNotFound = document.getElementById("not-found-message");
-const $copyMessage = document.getElementById("copy-message");
+function $(id) {
+  return document.getElementById(id);
+}
+
+const $cepInput = $("cep-input");
+const $cepInfoTextArea = $("cep-info");
+const $btnCopy = $("btn-copy");
+const $addressForm = $("address-form");
+const $addressNotFound = $("not-found-message");
+const $copyMessage = $("copy-message");
+const $erroMessage = $("error-message");
 
 let cepValue = "";
 let cepInfo = null;
@@ -16,25 +21,46 @@ $btnCopy.addEventListener("click", handleBtnCopyAddressInfo);
 
 function handleInputCepValue(event) {
   cepValue = event.target.value;
+  $erroMessage.style.opacity = 0;
 }
 
 async function handleSubmitForm(event) {
   event.preventDefault();
+
+  if (cepValue.length !== 8) {
+    $erroMessage.style.opacity = 1;
+    $erroMessage.innerText = "❌ Invalid CEP";
+    return;
+  }
 
   await fetch(`https://viacep.com.br/ws/${cepValue}/json`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      cepInfo = data;
+      if (getApiError(data)) {
+        $erroMessage.innerText = "Ops. Api error!";
+        $erroMessage.style.opacity = 1;
+        cepInfo = null;
+      } else {
+        cepInfo = data;
+      }
     });
 
   showInfoSection();
   populateTextArea();
 }
 
+function getApiError(obj) {
+  if (obj.erro) {
+    return true;
+  }
+
+  return false;
+}
+
 function handleBtnCopyAddressInfo() {
-  $cepInfo.select();
+  $cepInfoTextArea.select();
   document.execCommand("copy");
 
   $copyMessage.style.opacity = 1;
@@ -46,19 +72,21 @@ function handleBtnCopyAddressInfo() {
 
 function showInfoSection() {
   if (cepInfo !== null) {
-    $cepInfo.style.display = "block";
+    $cepInfoTextArea.style.display = "block";
     $btnCopy.style.display = "block";
     $addressNotFound.style.display = "none";
   }
 }
 
 function populateTextArea() {
-  $cepInfo.innerHTML = `
-  Bairro: ${cepInfo.bairro} &#13;&#10;
-  Cep: ${cepInfo.cep} &#13;&#10;
-  Complemento: ${cepInfo.complemento || "Não existe"} &#13;&#10;
-  Endereço: ${cepInfo.logradouro} &#13;&#10;
-  Cidade: ${cepInfo.localidade} &#13;&#10;
-  UF: ${cepInfo.uf}
+  if (cepInfo) {
+    $cepInfoTextArea.innerHTML = `
+    Bairro: ${cepInfo.bairro} &#13;&#10;
+    Cep: ${cepInfo.cep} &#13;&#10;
+    Complemento: ${cepInfo.complemento || "Não existe"} &#13;&#10;
+    Endereço: ${cepInfo.logradouro} &#13;&#10;
+    Cidade: ${cepInfo.localidade} &#13;&#10;
+    UF: ${cepInfo.uf}
   `;
+  }
 }

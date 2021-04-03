@@ -98,3 +98,9 @@ body {
   opacity: 0;
   transition: all 0.3s;
 }
+
+.error-message {
+  opacity: 0;
+  font-size: 1.2rem;
+  color: #d22e2d;
+}
