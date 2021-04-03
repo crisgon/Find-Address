@@ -5,12 +5,13 @@ const $addressForm = document.getElementById("address-form");
 const $addressNotFound = document.getElementById("not-found-message");
 
 let cepValue = "";
-
 let cepInfo = null;
 
 $cepInput.addEventListener("input", handleInputCepValue);
 
 $addressForm.addEventListener("submit", handleSubmitForm);
+
+$btnCopy.addEventListener("click", handleBtnCopyAddressInfo);
 
 function handleInputCepValue(event) {
   cepValue = event.target.value;
@@ -29,6 +30,11 @@ async function handleSubmitForm(event) {
 
   showInfoSection();
   populateTextArea();
+}
+
+function handleBtnCopyAddressInfo() {
+  $cepInfo.select();
+  document.execCommand("copy");
 }
 
 function showInfoSection() {
