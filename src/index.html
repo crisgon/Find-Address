@@ -7,18 +7,26 @@
     <link rel="stylesheet" href="style.css" />
     <title>Find Address</title>
   </head>
+
   <body>
     <main class="container">
       <h1>Encontre seu endereço</h1>
 
-      <form class="address-form">
+      <form id="address-form" class="address-form">
         <label>CEP</label>
-        <input type="text" id="cep" class="cep-input" />
-        <textarea class="cep-info" cols="30" rows="10"></textarea>
-        <button class="btn-copy">Copy Addres</button>
+
+        <input type="text" id="cep-input" class="cep-input" />
+
+        <textarea id="cep-info" class="cep-info" cols="30" rows="10"></textarea>
+
+        <button id="btn-copy" class="btn-copy">Copy Addres</button>
       </form>
 
-      <div class="not-found-message">No addres found... 😓</div>
+      <div class="not-found-message" id="not-found-message">
+        No addres found... 😓
+      </div>
     </main>
   </body>
+
+  <script src="script.js"></script>
 </html>
