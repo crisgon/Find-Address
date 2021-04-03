@@ -42,10 +42,26 @@ body {
   text-align: left;
 }
 
+.address-form .input-search-container {
+  display: flex;
+  width: 416px;
+}
+
+.address-form .input-search-container button {
+  padding: 0.5rem;
+  border: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: #3498db;
+  color: #fff;
+  cursor: pointer;
+}
+
 .address-form .cep-input {
   width: 100%;
   padding: 0.7rem 0.5rem;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   border: 0;
 }
 
