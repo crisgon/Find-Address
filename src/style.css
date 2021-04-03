@@ -74,3 +74,11 @@ body {
   cursor: pointer;
   transform: translateY(5px);
 }
+
+.copy-message {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  color: #fff;
+  opacity: 0;
+  transition: all 0.3s;
+}

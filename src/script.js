@@ -3,6 +3,7 @@ const $cepInfo = document.getElementById("cep-info");
 const $btnCopy = document.getElementById("btn-copy");
 const $addressForm = document.getElementById("address-form");
 const $addressNotFound = document.getElementById("not-found-message");
+const $copyMessage = document.getElementById("copy-message");
 
 let cepValue = "";
 let cepInfo = null;
@@ -35,6 +36,12 @@ async function handleSubmitForm(event) {
 function handleBtnCopyAddressInfo() {
   $cepInfo.select();
   document.execCommand("copy");
+
+  $copyMessage.style.opacity = 1;
+
+  setTimeout(() => {
+    $copyMessage.style.opacity = 0;
+  }, 3000);
 }
 
 function showInfoSection() {
